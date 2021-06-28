@@ -6,51 +6,38 @@ namespace _2_способ_задачи_от_
     {
         private static bool TryGetValue(out int val)
         {
-            Console.WriteLine("Введите 5 чисел: ");
-            var t = Console.ReadLine();
-            var r = int.TryParse(t, out val);
+            var t = Console.ReadLine();     
+            bool r = !Int32.TryParse(t, out val);  
             return r;
         }
 
+
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("Введите 5 чисел: "); 
+            TryGetValue(out int x1);
+            TryGetValue(out int x2);
+            TryGetValue(out int x3);
+            TryGetValue(out int x4);
+            TryGetValue(out int x5);
 
-            if (!r)
-            {
-                Console.WriteLine("Вы ввели не число!");
-            }          
-
-
-
-            int x1 = Convert.ToInt32();
-
-
-
-
-
-
-            int x2 = Convert.ToInt32(Console.ReadLine());
-            int x3 = Convert.ToInt32(Console.ReadLine());
-            int x4 = Convert.ToInt32(Console.ReadLine());
-            int x5 = Convert.ToInt32(Console.ReadLine());
-
-
-
+           
             Console.WriteLine($"Запомните эти числа:{x1},{x2},{x3},{x4},{x5}");
 
+
             int[] Nums = { x1, x2, x3, x4, x5 };
+
             Console.WriteLine("Введите одно число: ");
             int number = Convert.ToInt32(Console.ReadLine());
             foreach(var num in Nums)
             {
                 if (number== num)
                 {
-                    Console.WriteLine("Это именно то самое  число!");
+                    Console.WriteLine("Это оно!");
                 }
                 else
                 {
-                    Console.WriteLine("Совсем дурак чтоли, это не оно!");
+                    Console.WriteLine("Это не оно!");
                 }
             }
 
@@ -58,11 +45,8 @@ namespace _2_способ_задачи_от_
 
 
 
-                      
-            
-            
-            
-            
+
+
            
         }
     }
