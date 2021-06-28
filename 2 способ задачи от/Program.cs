@@ -10,13 +10,13 @@ namespace _2_способ_задачи_от_
             bool r = Int32.TryParse(t, out val);  
             return r;
         }
-         
+
 
         static void Main(string[] args)
-        { 
+        {
 
             Console.WriteLine("Введите 5 чисел: ");
-            var array =new int[5];
+            var array = new int[5];
 
 
             for (var i = 0; i < array.Length; i++)
@@ -39,7 +39,6 @@ namespace _2_способ_задачи_от_
             }
 
 
-
             Console.WriteLine("Вот все введенные вами числа: ");
             foreach (var i in array)
             {
@@ -59,7 +58,7 @@ namespace _2_способ_задачи_от_
                 number = TryGetValue(out int k);
                 if (number)
                 {
-                    value[0]=k;
+                    value[0] = k;
                     number = false;
                 }
                 else
@@ -68,9 +67,6 @@ namespace _2_способ_задачи_от_
                     number = true;
                 }
             }
-        
-            
-
             foreach (var nums in array)
             {
                 if (nums == value[0])
@@ -85,6 +81,11 @@ namespace _2_способ_задачи_от_
 
 
 
+
+
+
+
         }
+   
     }
 }
