@@ -10,12 +10,10 @@ namespace _2_способ_задачи_от_
             bool r = Int32.TryParse(t, out val);  
             return r;
         }
-        
-
+         
 
         static void Main(string[] args)
         { 
-
 
             Console.WriteLine("Введите 5 чисел: ");
             var array =new int[5];
@@ -24,10 +22,8 @@ namespace _2_способ_задачи_от_
             for (var i = 0; i < array.Length; i++)
             {
                 bool isInt = true;
-
                 while (isInt)
                 {
-
                     isInt = TryGetValue(out int t);
                     if (isInt)
                     {
@@ -39,18 +35,15 @@ namespace _2_способ_задачи_от_
                         Console.WriteLine("Вы ввели не число!");
                         isInt = true;
                     }
-
                 }
-
-
-
             }
+
 
 
             Console.WriteLine("Вот все введенные вами числа: ");
             foreach (var i in array)
             {
-                Console.WriteLine(i.ToString());
+                Console.WriteLine(i);
             }
             Console.WriteLine("Запомните их!");
 
@@ -58,20 +51,40 @@ namespace _2_способ_задачи_от_
 
 
 
+            Console.WriteLine("Вспомните любое число: ");
+            var value = new int[1];
+            bool number = true;
+            while (number)
+            {
+                number = TryGetValue(out int k);
+                if (number)
+                {
+                    value[0]=k;
+                    number = false;
+                }
+                else
+                {
+                    Console.WriteLine("Вы ввели не число!");
+                    number = true;
+                }
+            }
+        
+            
+
+            foreach (var nums in array)
+            {
+                if (nums == value[0])
+                {
+                    Console.WriteLine("Это именно то самое число!");
+                }
+                else
+                {
+                    Console.WriteLine("Это вовсе не то число!:");
+                }
+            }
 
 
 
-
-
-
-
-
-
-
-
-
-
-           
         }
     }
 }
