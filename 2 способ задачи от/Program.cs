@@ -21,7 +21,6 @@ namespace _2_способ_задачи_от_
             var array =new int[5];
 
 
-
             for (var i = 0; i < array.Length; i++)
             {
                 bool isInt = true;
@@ -44,7 +43,16 @@ namespace _2_способ_задачи_от_
                 }
 
 
+
             }
+
+
+            Console.WriteLine("Вот все введенные вами числа: ");
+            foreach (var i in array)
+            {
+                Console.WriteLine(i.ToString());
+            }
+            Console.WriteLine("Запомните их!");
 
 
 
