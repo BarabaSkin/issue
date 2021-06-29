@@ -14,6 +14,19 @@ namespace _2_способ_задачи_от_
         }
 
 
+        private static bool IsNoneZeroContains(int[] source)
+        {
+            foreach (var i in source )
+            {
+                if (i != 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
         static void Main(string[] args)
         {
 
@@ -55,51 +68,39 @@ namespace _2_способ_задачи_от_
             }
             Console.WriteLine("Запомните их!");
 
-
-
-
-
-
-
-            var value = new int[1];
-            bool x = true;
+            int value;
+            bool x = IsNoneZeroContains(array);
             while(x)
             {
-            Console.WriteLine("\nВспомните любое число: ");
-                bool number = true;
-                while (number)
-                {
-                    number = TryGetValue(out int k);
-                    if (number)
-                    {
-                        value[0] = k;
-                        number = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Вы ввели не число!");
-                        number = true;
-                    }
-                }
+                
+                Console.WriteLine("\n  Вспомните любое число: ");
+                    bool isNumber = true;
+                   
+                        isNumber = TryGetValue(out int k);
+                        if (isNumber)
+                        {
+                            for (var i = 0; i < array.Length; i++)
+                            {
+                                if (array[i] == k)
+                                {
+                                    Console.WriteLine("Это именно то самое число!");
+                                    array[i] = 0;
+                                }
+                            }                      
+                    x = IsNoneZeroContains(array);
 
-                foreach(var nums in array)
-                {
-                    if (nums == value[0])
-                    {
-                        Console.WriteLine("Это именно то самое число!");
-                        array = array.Where(val => val != nums).ToArray();
-                        x = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Это вовсе не то число!");
-                        x = true;
-                    }
-                }
-
+                        }
+                        else
+                        {
+                            Console.WriteLine("Вы ввели не число!");
+                            isNumber = true;
+                        }                 
+                
+                 
+                
             }
 
-
+            Console.WriteLine("Вы угадали все числа!");
 
 
 
