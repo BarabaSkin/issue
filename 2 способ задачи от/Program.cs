@@ -39,6 +39,10 @@ namespace _2_способ_задачи_от_
             }
 
 
+
+
+
+
             Console.WriteLine("Вот все введенные вами числа: ");
             foreach (var i in array)
             {
@@ -50,34 +54,45 @@ namespace _2_способ_задачи_от_
 
 
 
+
+
+
+
             Console.WriteLine("Вспомните любое число: ");
             var value = new int[1];
-            bool number = true;
-            while (number)
+            for (var i = 0; ; i++)
             {
-                number = TryGetValue(out int k);
-                if (number)
+                bool number = true;
+                while (number)
                 {
-                    value[0] = k;
-                    number = false;
+                    number = TryGetValue(out int k);
+                    if (number)
+                    {
+                        value[0] = k;
+                        number = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы ввели не число!");
+                        number = true;
+                    }
                 }
-                else
+                foreach (var nums in array)
                 {
-                    Console.WriteLine("Вы ввели не число!");
-                    number = true;
+                    if (nums == value[0])
+                    {
+                        Console.WriteLine("Это именно то самое число!");                      
+                    }
+                    else
+                    {
+                        Console.WriteLine("Это вовсе не то число!:");
+                    }
                 }
+
             }
-            foreach (var nums in array)
-            {
-                if (nums == value[0])
-                {
-                    Console.WriteLine("Это именно то самое число!");
-                }
-                else
-                {
-                    Console.WriteLine("Это вовсе не то число!:");
-                }
-            }
+
+
+
 
 
 
