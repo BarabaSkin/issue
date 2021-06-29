@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Linq;
 
 namespace _2_способ_задачи_от_
 {
     class Program
     {
+
         private static bool TryGetValue(out int val)
         {
-            var t = Console.ReadLine();     
-            bool r = Int32.TryParse(t, out val);  
+            var t = Console.ReadLine();
+            bool r = Int32.TryParse(t, out val);            
             return r;
         }
 
@@ -15,7 +17,7 @@ namespace _2_способ_задачи_от_
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Введите 5 чисел: ");
+            Console.WriteLine("Введите 5 чисел, отличных от 0: ");
             var array = new int[5];
 
 
@@ -25,20 +27,23 @@ namespace _2_способ_задачи_от_
                 while (isInt)
                 {
                     isInt = TryGetValue(out int t);
-                    if (isInt)
+                    if(t==0)
+                    {
+                        Console.WriteLine("Вы ввели не правильное значение!");
+                        isInt = true;
+                    }
+                    else if (isInt)
                     {
                         array[i] = t;
                         isInt = false;
-                    }
-                    else
+                    }                 
+                    else if (!isInt)
                     {
                         Console.WriteLine("Вы ввели не число!");
                         isInt = true;
                     }
                 }
             }
-
-
 
 
 
@@ -56,12 +61,11 @@ namespace _2_способ_задачи_от_
 
 
 
-
-
-            Console.WriteLine("Вспомните любое число: ");
             var value = new int[1];
-            for (var i = 0; ; i++)
+            bool x = true;
+            while(x)
             {
+            Console.WriteLine("\nВспомните любое число: ");
                 bool number = true;
                 while (number)
                 {
@@ -77,15 +81,19 @@ namespace _2_способ_задачи_от_
                         number = true;
                     }
                 }
-                foreach (var nums in array)
+
+                foreach(var nums in array)
                 {
                     if (nums == value[0])
                     {
-                        Console.WriteLine("Это именно то самое число!");                      
+                        Console.WriteLine("Это именно то самое число!");
+                        array = array.Where(val => val != nums).ToArray();
+                        x = false;
                     }
                     else
                     {
-                        Console.WriteLine("Это вовсе не то число!:");
+                        Console.WriteLine("Это вовсе не то число!");
+                        x = true;
                     }
                 }
 
