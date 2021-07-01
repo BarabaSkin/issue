@@ -14,6 +14,8 @@ namespace _2_способ_задачи_от_
         }
 
 
+
+
         private static bool IsNoneZeroContains(int[] source)
         {
             foreach (var i in source )
@@ -26,110 +28,116 @@ namespace _2_способ_задачи_от_
             return false;
         }
 
-        private static bool EndOrRepeat(out string End)
+
+
+
+        private static bool EndOrRepeat()
         {
-            Console.WriteLine("Для завершения программы напишите'Exit'.");
+            Console.WriteLine("Для завершения программы напишите'Exit' \nЧТобы начать программу заново напишите 'Repeat'");
             var end = Console.ReadLine();
-            bool r = end == "Exit";
-            bool t = end == "Repeat";
+            bool r = end == "Exit";          
             if (r)
             {
-                End = "End of programm";
-                Console.WriteLine(End);
-                return !r;
-            }
-            else if (t)
-            {
-                End = "Re[eat programm";
                 Console.WriteLine("End");
-                return t;
+                r = false;
+            }           
+            r = end == "Repeat";
+            if (r)
+            {               
+                Console.WriteLine("Repeat");
+                r = true;
             }
+            return r;
         }
+
+
+
 
         static void Main(string[] args)
         {
             bool y = true;
             while (y)
             {
-                y= EndOrRepeat(out string End);
-            }
+                Console.WriteLine("Введите 5 чисел, отличных от 0: ");
+                var array = new int[5];
 
 
-
-
-
-
-            Console.WriteLine("Введите 5 чисел, отличных от 0: ");
-            var array = new int[5];
-
-
-            for (var i = 0; i < array.Length; i++)
-            {
-                bool isInt = true;
-                while (isInt)
+                for (var i = 0; i < array.Length; i++)
                 {
-                    isInt = TryGetValue(out int t);
-                    if(t==0)
+                    bool isInt = true;
+                    while (isInt)
                     {
-                        Console.WriteLine("Вы ввели не правильное значение!");
-                        isInt = true;
-                    }
-                    else if (isInt)
-                    {
-                        array[i] = t;
-                        isInt = false;
-                    }                 
-                    else if (!isInt)
-                    {
-                        Console.WriteLine("Вы ввели не число!");
-                        isInt = true;
-                    }
-                }
-            }
-
-
-
-
-            Console.WriteLine("Вот все введенные вами числа: ");
-            foreach (var i in array)
-            {
-                Console.WriteLine(i);
-            }
-            Console.WriteLine("Запомните их!");
-
-            int value;
-            bool x = IsNoneZeroContains(array);
-            while(x)
-            {
-                
-                Console.WriteLine("\n  Вспомните любое число: ");
-                    bool isNumber = true;
-                   
-                        isNumber = TryGetValue(out int k);
-                        if (isNumber)
+                        isInt = TryGetValue(out int t);
+                        if (t == 0)
                         {
-                            for (var i = 0; i < array.Length; i++)
-                            {
-                                if (array[i] == k)
-                                {
-                                    Console.WriteLine("Это именно то самое число!");
-                                    array[i] = 0;
-                                }
-                            }                      
-                    x = IsNoneZeroContains(array);
-
+                            Console.WriteLine("Вы ввели не правильное значение!");
+                            isInt = true;
                         }
-                        else
+                        else if (isInt)
+                        {
+                            array[i] = t;
+                            isInt = false;
+                        }
+                        else if (!isInt)
                         {
                             Console.WriteLine("Вы ввели не число!");
-                            isNumber = true;
-                        }                 
-                
+                            isInt = true;
+                        }
+                    }
+                }
                  
                 
+
+
+
+                Console.WriteLine("Вот все введенные вами числа: ");
+                foreach (var i in array)
+                {
+                    Console.WriteLine(i);
+                }
+                Console.WriteLine("Запомните их!");
+
+                int value;
+                bool x = IsNoneZeroContains(array);
+                while (x)
+                {
+
+                    Console.WriteLine("\n  Вспомните любое число: ");
+                    bool isNumber = true;
+
+                    isNumber = TryGetValue(out int k);
+                    if (isNumber)
+                    {
+                        for (var i = 0; i < array.Length; i++)
+                        {
+                            if (array[i] == k)
+                            {
+                                Console.WriteLine("Это именно то самое число!");
+                                array[i] = 0;
+                            }
+                        }
+                        x = IsNoneZeroContains(array);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы ввели не число!");
+                        isNumber = true;
+                    }
+
+                }
+                Console.WriteLine("Вы угадали все числа!");
+
+                y = EndOrRepeat();
+
             }
 
-            Console.WriteLine("Вы угадали все числа!");
+
+
+
+
+
+            
 
 
 
