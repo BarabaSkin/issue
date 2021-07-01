@@ -26,9 +26,38 @@ namespace _2_способ_задачи_от_
             return false;
         }
 
+        private static bool EndOrRepeat(out string End)
+        {
+            Console.WriteLine("Для завершения программы напишите'Exit'.");
+            var end = Console.ReadLine();
+            bool r = end == "Exit";
+            bool t = end == "Repeat";
+            if (r)
+            {
+                End = "End of programm";
+                Console.WriteLine(End);
+                return !r;
+            }
+            else if (t)
+            {
+                End = "Re[eat programm";
+                Console.WriteLine("End");
+                return t;
+            }
+        }
 
         static void Main(string[] args)
         {
+            bool y = true;
+            while (y)
+            {
+                y= EndOrRepeat(out string End);
+            }
+
+
+
+
+
 
             Console.WriteLine("Введите 5 чисел, отличных от 0: ");
             var array = new int[5];
