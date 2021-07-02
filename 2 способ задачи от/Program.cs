@@ -5,6 +5,33 @@ namespace _2_способ_задачи_от_
 {
     class Program
     {
+        private static int[] LastValueInArray(int [] values)
+        {
+         
+           var length = values.Length - 1;
+           var result = new int[length];
+           for (int i = 0; i < length ; i++)
+           {
+                var item = values[i];
+                result[i] = item;
+                         
+           }
+           return result;
+        }
+        private static int[] FirstValueInArrai(int[] values)
+        {
+            var length = values.Length -1;
+            var result = new int[length];
+            for (int i = 1; i < values.Length; i++)
+            {
+                var item = values[i];
+                result[i] = item; 
+            }
+            return result;
+        }
+
+
+
 
         private static bool TryGetValue(out int val)
         {
@@ -14,81 +41,103 @@ namespace _2_способ_задачи_от_
         }
 
 
-
-
-        private static bool IsNoneZeroContains(int[] source)
+        private static bool IsLengthZero(int[] source)
         {
-            foreach (var i in source )
+            if (source.Length == 0)
             {
-                if (i != 0)
-                {
-                    return true;
-                }
+                return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
+       
 
-
+       
 
         private static bool EndOrRepeat()
         {
-            Console.WriteLine("Для завершения программы напишите'Exit' \nЧТобы начать программу заново напишите 'Repeat'");
-            var end = Console.ReadLine();
-            bool r = end == "Exit";          
-            if (r)
+            Console.WriteLine("\nДля завершения программы напишите'Exit' \nЧтобы начать программу заново напишите 'Repeat'");            
+            bool z = true;
+            bool r = true;
+            while (z)
             {
-                Console.WriteLine("End");
-                r = false;
-            }           
-            r = end == "Repeat";
-            if (r)
-            {               
-                Console.WriteLine("Repeat");
-                r = true;
+                var end = Console.ReadLine();               
+                if (r = end == "Exit")
+                {
+                    Console.WriteLine("Завершение программы");
+                    z = false;
+                    r = false;
+                }
+                else if(r = end == "Repeat")                
+                {
+                    Console.WriteLine("Начало программы заново");
+                    z = false;
+                    r = true;
+                }
+                else
+                {
+                    Console.WriteLine("Вы ввели неправильное значение! \nПовторите ввод");
+                    z = true;
+                }               
             }
-            return r;
+            return r;           
         }
 
+        
+        private static int[] NewArray(int[] source, int value)
+        {
+            var length = source.Length - 1;
+            var result = new int[length];
+            var isSkiped = false;
+            var iterator = 0;
+            foreach (var item in source) 
+            {
+                if (item == value && !isSkiped)
+                {
+                    isSkiped = true;
 
-
+                }
+                else 
+                {                   
+                    result[iterator] = item;
+                    iterator++;
+                }
+            }
+            return result;
+        }
 
         static void Main(string[] args)
         {
+            var random = new Random();
+            var ii = random.Next(1, 5);
+
             bool y = true;
             while (y)
             {
-                Console.WriteLine("Введите 5 чисел, отличных от 0: ");
+                Console.WriteLine("Введите 5 чисел: ");
                 var array = new int[5];
-
-
                 for (var i = 0; i < array.Length; i++)
                 {
                     bool isInt = true;
                     while (isInt)
                     {
-                        isInt = TryGetValue(out int t);
-                        if (t == 0)
-                        {
-                            Console.WriteLine("Вы ввели не правильное значение!");
-                            isInt = true;
-                        }
-                        else if (isInt)
+                        isInt = TryGetValue(out int t);                    
+                        if (isInt)
                         {
                             array[i] = t;
                             isInt = false;
                         }
-                        else if (!isInt)
+                        else 
                         {
                             Console.WriteLine("Вы ввели не число!");
                             isInt = true;
                         }
                     }
                 }
-                 
-                
-
-
+                               
 
                 Console.WriteLine("Вот все введенные вами числа: ");
                 foreach (var i in array)
@@ -96,10 +145,10 @@ namespace _2_способ_задачи_от_
                     Console.WriteLine(i);
                 }
                 Console.WriteLine("Запомните их!");
+             
 
-                int value;
-                bool x = IsNoneZeroContains(array);
-                while (x)
+                bool x = IsLengthZero(array);
+                while (!x)
                 {
 
                     Console.WriteLine("\n  Вспомните любое число: ");
@@ -113,10 +162,11 @@ namespace _2_способ_задачи_от_
                             if (array[i] == k)
                             {
                                 Console.WriteLine("Это именно то самое число!");
-                                array[i] = 0;
+
+                                array[i] = 0;                              
                             }
                         }
-                        x = IsNoneZeroContains(array);
+                        x = IsLengthZero(array);
 
                     }
                     else
@@ -128,6 +178,7 @@ namespace _2_способ_задачи_от_
                 }
                 Console.WriteLine("Вы угадали все числа!");
 
+
                 y = EndOrRepeat();
 
             }
@@ -138,12 +189,6 @@ namespace _2_способ_задачи_от_
 
 
             
-
-
-
-
-
-
 
 
         }
