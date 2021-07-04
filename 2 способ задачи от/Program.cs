@@ -4,43 +4,13 @@ using System.Linq;
 namespace _2_способ_задачи_от_
 {
     class Program
-    {
-        private static int[] LastValueInArray(int [] values)
-        {
-         
-           var length = values.Length - 1;
-           var result = new int[length];
-           for (int i = 0; i < length ; i++)
-           {
-                var item = values[i];
-                result[i] = item;
-                         
-           }
-           return result;
-        }
-        private static int[] FirstValueInArrai(int[] values)
-        {
-            var length = values.Length -1;
-            var result = new int[length];
-            for (int i = 1; i < values.Length; i++)
-            {
-                var item = values[i];
-                result[i] = item; 
-            }
-            return result;
-        }
-
-
-
-
+    {  
         private static bool TryGetValue(out int val)
         {
             var t = Console.ReadLine();
             bool r = Int32.TryParse(t, out val);            
             return r;
         }
-
-
         private static bool IsLengthZero(int[] source)
         {
             if (source.Length == 0)
@@ -52,11 +22,6 @@ namespace _2_способ_задачи_от_
                 return false;
             }
         }
-
-       
-
-       
-
         private static bool EndOrRepeat()
         {
             Console.WriteLine("\nДля завершения программы напишите'Exit' \nЧтобы начать программу заново напишите 'Repeat'");            
@@ -85,8 +50,6 @@ namespace _2_способ_задачи_от_
             }
             return r;           
         }
-
-        
         private static int[] NewArray(int[] source, int value)
         {
             var length = source.Length - 1;
@@ -108,12 +71,11 @@ namespace _2_способ_задачи_от_
             }
             return result;
         }
-
         static void Main(string[] args)
         {
             var random = new Random();
             var ii = random.Next(1, 5);
-
+                    
             bool y = true;
             while (y)
             {
@@ -136,21 +98,16 @@ namespace _2_способ_задачи_от_
                             isInt = true;
                         }
                     }
-                }
-                               
-
+                }                           
                 Console.WriteLine("Вот все введенные вами числа: ");
                 foreach (var i in array)
                 {
                     Console.WriteLine(i);
                 }
-                Console.WriteLine("Запомните их!");
-             
-
+                Console.WriteLine("Запомните их!");          
                 bool x = IsLengthZero(array);
                 while (!x)
                 {
-
                     Console.WriteLine("\n  Вспомните любое число: ");
                     bool isNumber = true;
 
@@ -162,12 +119,11 @@ namespace _2_способ_задачи_от_
                             if (array[i] == k)
                             {
                                 Console.WriteLine("Это именно то самое число!");
+                                array = NewArray(array, k);                   
+                            }                             
 
-                                array[i] = 0;                              
-                            }
                         }
                         x = IsLengthZero(array);
-
                     }
                     else
                     {
@@ -177,20 +133,8 @@ namespace _2_способ_задачи_от_
 
                 }
                 Console.WriteLine("Вы угадали все числа!");
-
-
                 y = EndOrRepeat();
-
             }
-
-
-
-
-
-
-            
-
-
         }
    
     }
