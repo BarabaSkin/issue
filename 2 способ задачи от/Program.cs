@@ -7,9 +7,9 @@ namespace _2_способ_задачи_от_
     {  
         private static bool TryGetValue(out int val)
         {
-            var t = Console.ReadLine();
-            bool r = Int32.TryParse(t, out val);            
-            return r;
+            var String = Console.ReadLine();
+            bool isInt = Int32.TryParse(String, out val);            
+            return isInt;
         }
         private static bool IsLengthZero(int[] source)
         {
@@ -73,57 +73,50 @@ namespace _2_способ_задачи_от_
         }
         static void Main(string[] args)
         {
-            var random = new Random();
-            var ii = random.Next(1, 5);
-                    
-            bool y = true;
-            while (y)
+
+            bool endOrNot = true;
+            while (endOrNot)
             {
-                Console.WriteLine("Введите 5 чисел: ");
-                var array = new int[5];
-                for (var i = 0; i < array.Length; i++)
+
+                var random = new Random();
+                int[] array = new int[3];
+                for (var C = 0; C < 3; C++)
                 {
-                    bool isInt = true;
-                    while (isInt)
-                    {
-                        isInt = TryGetValue(out int t);                    
-                        if (isInt)
-                        {
-                            array[i] = t;
-                            isInt = false;
-                        }
-                        else 
-                        {
-                            Console.WriteLine("Вы ввели не число!");
-                            isInt = true;
-                        }
-                    }
-                }                           
-                Console.WriteLine("Вот все введенные вами числа: ");
-                foreach (var i in array)
-                {
-                    Console.WriteLine(i);
+                    var ii = random.Next(1,5);
+                    array[C] = ii;
                 }
-                Console.WriteLine("Запомните их!");          
-                bool x = IsLengthZero(array);
-                while (!x)
+
+                Console.WriteLine("Дано 3 числа от 1 до 5. Числа могут повторяться! \nУгадайте их!");
+                bool lengthZero = IsLengthZero(array);
+                while (!lengthZero)
                 {
-                    Console.WriteLine("\n  Вспомните любое число: ");
+                    Console.WriteLine("\n Введите предполагаемое число: ");
                     bool isNumber = true;
 
                     isNumber = TryGetValue(out int k);
                     if (isNumber)
                     {
-                        for (var i = 0; i < array.Length; i++)
-                        {
-                            if (array[i] == k)
+                        var guess = false;
+                        while (guess)
+                        {                         
+                            for (var i = 0; i < array.Length; i++)
                             {
-                                Console.WriteLine("Это именно то самое число!");
-                                array = NewArray(array, k);                   
-                            }                             
-
+                                if (array[i] == k)
+                                {
+                                    Console.WriteLine("Вы угадали :)");
+                                    array = NewArray(array, k);
+                                    guess = true;
+                                    break;
+                                }                                   
+                            }  
+                            if (guess == false)
+                            {
+                                Console.WriteLine("Вы не угдадали");
+                                guess = true;
+                            }                           
                         }
-                        x = IsLengthZero(array);
+
+                        lengthZero = IsLengthZero(array);
                     }
                     else
                     {
@@ -133,7 +126,7 @@ namespace _2_способ_задачи_от_
 
                 }
                 Console.WriteLine("Вы угадали все числа!");
-                y = EndOrRepeat();
+                endOrNot = EndOrRepeat();
             }
         }
    
