@@ -75,19 +75,29 @@ namespace _2_способ_задачи_от_
                 
                 Console.WriteLine("\n  Вспомните любое число: ");
                     bool isNumber = true;
-                   
-                        isNumber = TryGetValue(out int k);
-                        if (isNumber)
-                        {
+
+                    isNumber = TryGetValue(out int k);
+                    if (isNumber)
+                    {
+                        var guess = true;
+                        while (guess)
+                        {                         
                             for (var i = 0; i < array.Length; i++)
                             {
                                 if (array[i] == k)
                                 {
-                                    Console.WriteLine("Это именно то самое число!");
-                                    array[i] = 0;
-                                }
-                            }                      
-                    x = IsNoneZeroContains(array);
+                                    Console.WriteLine("Вы угадали :)");
+                                    array = NewArray(array, k);
+                                    guess = false;
+                                    break;
+                                }                                   
+                            }  
+                            if (guess == true)
+                            {
+                                Console.WriteLine("Вы не угдадали");
+                                guess = false;
+                            }                           
+                        }
 
                         }
                         else
