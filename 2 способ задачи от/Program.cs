@@ -112,7 +112,7 @@ namespace _2_способ_задачи_от_
                             }
                             if (guess == true)
                             {
-                                Console.WriteLine("Вы не угдадали");
+                                Console.WriteLine("Вы не угадали");
                                 guess = false;
                             }
                         }
